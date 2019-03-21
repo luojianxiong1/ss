@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>发布消息</title>
+</head>
+
+<body>
+	<table>
+		<tr>
+			<td>消息主题</td><td><input type="text" id="mtitle" /></td>
+		</tr> 
+		<tr>
+			<td>发布者</td><td><input type="text"  id="muser" /></td>
+		</tr>
+		<tr> 
+			<th colspan='2'><input id="regBtn" type="button" value="发布" /></th>
+		</tr>	
+	</table>
+</body>
+<script src="js/jquery-1.12.4.js"></script>
+<script type="text/javascript">
+			//ajax保存
+			$("#regBtn").on("click", function(e) {
+				var msg={};
+				msg["mtitle"]=$.trim($("#mtitle").val());
+				msg["muser"]=$.trim($("#muser").val());
+				$.ajax("/add",{
+					type:"POST",
+					dataType:"json",
+					data:JSON.stringify(msg),   //序列化提交json字符串
+					contentType:"application/json",//非常重要
+					timeout:4000,
+					"success":function(json){
+						if(json.code==200){
+							$("#mtitle").val("");
+							$("#muser").val("");
+							alert("消息发布成功");
+						}
+					}
+				});
+			});
+</script>
+</html>

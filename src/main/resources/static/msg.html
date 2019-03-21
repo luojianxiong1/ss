@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style type="text/css">
+.box {
+	-webkit-animation: playBox 1.0s infinite;
+}
+
+@
+-webkit-keyframes playBox { 0%{
+	text-decoration: none;
+	color: #red;
+}
+50%{
+text-decoration
+
+
+
+
+:none
+
+
+
+
+;
+color
+
+
+
+
+:
+
+
+
+
+#ffdcdc
+
+
+
+
+;
+}
+51%{
+text-decoration
+
+
+
+
+:none
+
+
+
+
+;
+color
+
+
+
+
+:
+
+
+
+
+#e9c8c8
+
+
+
+
+;
+}
+100%{
+text-decoration
+
+
+
+
+:none
+
+
+
+
+;
+color
+
+
+
+
+:
+
+
+
+
+#e9c8c8
+
+
+
+
+;
+}
+}
+</style>
+</head>
+<body>
+	<h1 id="showUsers"></h1>
+	<div id="newMsg" style="display: none;">
+		<h4 class="box" style="color: red">您有新消息</h4>
+	</div>
+	<table border="1" width="500">
+		<thead>
+			<tr style="background-color: #EFEFEF">
+				<th>序号</th>
+				<th>消息主题</th>
+				<th>发布者</th>
+				<th>发布时间</th>
+			</tr>
+		</thead>
+		<tbody id="cnt">
+
+		</tbody>
+	</table>
+</body>
+<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+<script type="text/javascript">
+	
+
+	//加载消息列表
+	function loadMessageList() {
+		$.ajax("/list", {
+			type : "GET",
+			dataType : "json",
+			timeout : 5000,
+			success : function(list) {
+				$("#cnt").empty();
+				$.each(list, function(i, item) {
+					$("#cnt").append(
+							"<tr><td>" + (i + 1) + "</td><td>" + item.mtitle
+									+ "</td><td>" + item.muser + "</td><td>"
+									+ item.mdate + "</td></tr>");
+				});
+				$("#newMsg").hide();
+			}
+		});
+	}
+	loadMessageList();
+	$.getJSON("/c/users/getUsers",function(json){
+		$("#showUsers").html("欢迎"+json.userName+"用户登陆成功");
+	});
+</script>
+
+</html>

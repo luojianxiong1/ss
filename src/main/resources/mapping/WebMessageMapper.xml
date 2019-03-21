@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.accp.dao.IWebMessageDao">
+
+	<select id="queryAllMessage" resultType="com.accp.pojo.WebMessage">
+		SELECT * FROM WEBMESSAGE
+		ORDER BY mid desc;
+	</select>
+
+	<insert id="saveMessage" useGeneratedKeys="true" keyColumn="mid"
+		keyProperty="message.mid">
+		INSERT INTO WEBMESSAGE(mtitle,muser,mdate)
+		VALUES(#{message.mtitle},#{message.muser},current_date());
+	</insert>
+
+</mapper>

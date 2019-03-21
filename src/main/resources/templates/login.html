@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!-- 1.鍛藉悕绌洪棿 (闈炲父閲嶈)-->
+<html xmlns:th="http://www.thymeleaf.org">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<head>
+<title>鐧诲綍</title>
+
+
+</head>
+
+<body>
+	<h1 th:text="${MSG}" style="color:red;">[[${MSG}]]</h1>
+	<div>
+		<form action="/c/users/loginIn" method="POST">
+			<table>
+				<tr>
+					<td>鐢ㄦ埛鍚�:</td>
+
+					<td><input type="text" name="userName" /></td>
+				</tr>
+				<tr>
+					<td>瀵�&nbsp;鐮�:</td>
+					<td><input type="password" name="userPwd" /></td>
+				</tr>
+
+				<tr>
+					<td>&nbsp;&nbsp;</td>
+					<td><input type="checkbox" name="ops" value="鑷姩鐧婚檰" />鑷姩鐧婚檰<input
+						type="checkbox" name="ops" value="璁颁綇鐢ㄦ埛鍚�" />璁颁綇鐢ㄦ埛鍚�</td>
+				</tr>
+				<tr>
+					<td colspan="2" align="center"><input type="submit" value="鐧诲綍" />
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</body>
+</html>
